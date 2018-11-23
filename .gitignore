@@ -1,0 +1,10 @@
+#folders
+__pycache__
+include
+Lib
+Scripts
+tcl
+
+#files
+pip-selfcheck.json
+.env

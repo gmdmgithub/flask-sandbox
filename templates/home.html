@@ -1,0 +1,17 @@
+{% extends "template.html" %}
+
+{% block content%}
+
+<div class="content">
+<h1>Welcome to the flask</h1>
+    {% for post in postList %}
+    <div class="box">
+        <h4>{{ post.title }}</h4>
+        <h5>{{ post.author }}</h5>
+        <p>{{ post.content }}</p>
+        <p>{{ post.post_date }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content%}
