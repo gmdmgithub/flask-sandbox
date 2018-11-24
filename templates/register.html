@@ -3,8 +3,9 @@
 {% block content%}
 
 <div class="content">
-    <h1>Welcome to the flask</h1>
+    <h2>Please fill in registration form</h1>
 
+    <div class="form">
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <!-- login user name -->
@@ -12,13 +13,13 @@
             {{ form.username.label(class="form-control-label") }}
             {% if form.username.errors %}
             {{ form.username(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.username.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-            </div>
+                <div class="invalid-feedback">
+                    {% for error in form.username.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
             {% else %}
-            {{ form.username(class="form-control form-control-lg") }}
+                {{ form.username(class="form-control form-control-lg") }}
             {% endif %}
         </div>
         <!-- registration password -->
@@ -70,12 +71,13 @@
         </div>
     </form>
 
+
+    <div class="register-link">
+        <small class="text-muted">
+            Do you have account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
+        </small>
 </div>
 
-<div class="border-top pt-3">
-    <small class="text-muted">
-        Do you have account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
-    </small>
 </div>
 
 

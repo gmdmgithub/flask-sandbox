@@ -24,10 +24,16 @@ post = [
         'post_date': '2018-01-15'
     },
     {
-        'author': 'Janet Jecson',
+        'author': 'Janet Jackson',
         'title': 'My brother',
         'content': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia incidunt aperiam ut distinctio doloremque. Illo maxime soluta dolore dolorem tempore.',
         'post_date': '2018-02-15'
+    },
+    {
+        'author': 'John Kennedy',
+        'title': 'My country',
+        'content': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia incidunt aperiam ut distinctio doloremque. Illo maxime soluta dolore dolorem tempore.',
+        'post_date': '2018-03-15'
     }
 ]
 
@@ -70,7 +76,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('/home'))
+        return redirect(url_for('home'))
     return render_template('register.html', param=register_p, form=form)
 
 #route login form

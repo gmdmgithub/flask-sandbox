@@ -6,5 +6,5 @@ pip install Flask
 pip install python-dotenv
 # for secret you can use
 $python
->>import secrets
->>secrets.token_hex(16)
+>>$import secrets
+>>$secrets.token_hex(16)
