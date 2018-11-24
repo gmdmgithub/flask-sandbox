@@ -7,7 +7,7 @@
 
     <form method="POST" action="">
         {{ form.hidden_tag() }}
-        <!-- login user name -->
+        <!-- user name -->
         <div class="form-group">
             {{ form.username.label(class="form-control-label") }}
             {% if form.username.errors %}
@@ -21,7 +21,7 @@
             {{ form.username(class="form-control form-control-lg") }}
             {% endif %}
         </div>
-        <!-- registration password -->
+        <!-- password -->
         <div class="form-group">
             {{ form.password.label(class="form-control-label") }}
             {% if form.password.errors %}
@@ -35,34 +35,21 @@
             {{ form.password(class="form-control form-control-lg") }}
             {% endif %}
         </div>
-        <!-- password confirmation -->
+        <!-- remember me checkbox -->
         <div class="form-group">
-            {{ form.passwordConfirm.label(class="form-control-label") }}
-            {% if form.passwordConfirm.errors %}
-            {{ form.passwordConfirm(class="form-control form-control-lg is-invalid") }}
+            {{ form.rememberMe.label(class="form-control-label") }}
+            {% if form.rememberMe.errors %}
+            {{ form.rememberMe(class="form-control form-control-lg is-invalid") }}
             <div class="invalid-feedback">
-                {% for error in form.passwordConfirm.errors %}
+                {% for error in form.rememberMe.errors %}
                 <span>{{ error }}</span>
                 {% endfor %}
             </div>
             {% else %}
-            {{ form.passwordConfirm(class="form-control form-control-lg") }}
+            {{ form.rememberMe(class="form-control form-control-lg") }}
             {% endif %}
         </div>
-        <!-- registration email -->
-        <div class="form-group">
-            {{ form.email.label(class="form-control-label") }}
-            {% if form.email.errors %}
-            {{ form.email(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.email.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-            </div>
-            {% else %}
-            {{ form.email(class="form-control form-control-lg") }}
-            {% endif %}
-        </div>
+
 
         <!-- submit button -->
         <div class="form-group">
@@ -71,12 +58,5 @@
     </form>
 
 </div>
-
-<div class="border-top pt-3">
-    <small class="text-muted">
-        Do you have account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
-    </small>
-</div>
-
 
 {% endblock content%}

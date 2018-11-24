@@ -1,6 +1,10 @@
 # flask-sandbox
 Fisrt flask sandbox project
-#instal flask
+# instal flask
 pip install Flask
-#for env
+# for env
 pip install python-dotenv
+# for secret you can use
+$python
+>>import secrets
+>>secrets.token_hex(16)

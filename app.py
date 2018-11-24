@@ -31,34 +31,38 @@ post = [
     }
 ]
 
-home ={
+home_p ={
     'active':'home',
+    'menu': True,
     'title' : 'Home page'
 }
-about ={
+about_p ={
     'active':'about',
+    'menu': True,
     'title' : 'About page'
 }
 
-register = {
+register_p = {
     'active':'registration',
+    'menu': False,
     'title': 'Registration page'
 }
 
-login = {
+login_p = {
     'active':'login',
+    'menu': False,
     'title': 'Login page'
 }
 
 @app.route("/")
 @app.route("/home")
-def hello():
-    return render_template('home.html',param=home, postList=post) #"<h1>Hi there - here is flask - no restart</h1>"
+def home():
+    return render_template('home.html',param=home_p, postList=post) #"<h1>Hi there - here is flask - no restart</h1>"
 
 #anbout page
 @app.route("/about")
 def about():
-    return render_template('about.html', param=about, title="About page")
+    return render_template('about.html', param=about_p, title="About page")
 
 #route for registration form
 @app.route('/register',methods=['POST','GET'])
@@ -66,8 +70,8 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('home'))
-    return render_template('register.html', param=register, form=form)
+        return redirect(url_for('/home'))
+    return render_template('register.html', param=register_p, form=form)
 
 #route login form
 @app.route('/login',methods=['GET', 'POST'])
@@ -75,16 +79,15 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         flash(f'Login to the system {form.username.data}!','success')
-
+        return redirect(url_for('home'))
+    return render_template('login.html', param=login_p, form=form)
 
 #not foud - bed address
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
     return render_template('not-found.html')
-    return redirect(url_for('home'))
-return render_template('login.html', param=login, form=form)
-
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
