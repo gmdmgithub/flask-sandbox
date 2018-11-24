@@ -2,12 +2,29 @@
 {
     --nav-h:50px;
 }
+*
+{
+    box-sizing: border-box;
+}
 body {
     background: #92bde7;
     color: #333333;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    
+}
+.alert
+{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+} 
+.alert-success
+{
+    color: rgb(13, 211, 13);
+}
+.alert-unseccessful{
+    color: rgb(245, 20, 20);
 }
 h1,h2,h3,h4,h5,h6 {
     color: #444444;
@@ -28,7 +45,7 @@ nav ul {
     display: flex;
     margin: 0;
     padding: 0 20px;
-    float: right;
+    justify-content: flex-end;
     flex-wrap: wrap;
 }
 
@@ -37,7 +54,6 @@ nav ul li {
 }
 
 nav ul li a {
-    width: 100px;
     display: block;
     color: #fff;
     text-decoration: none;
@@ -62,25 +78,28 @@ nav ul li a:hover {
     align-items: center;
     align-content: center;
     flex-direction: column;
+    width: 100%;
 }
 
 .box {
     margin: 20px;
     padding: 20px;
     box-shadow: 2px 5px 5px 2px #303030;
+    border: 1px solid #303030;
     border-radius: 10px;
     max-width: 50%;
 }
 
 .form{
     margin: 0 auto;
-    min-width: 400px;
+    min-width: 40%;
     display: flex;
     flex-direction: column;
     padding: 20px;
     box-shadow: 2px 4px 4px;
     border-radius: 5px;
     border: solid 1px gray;
+    background-color: #f0ffff;
 }
 .form-group{
     padding: 5px;
@@ -92,17 +111,19 @@ nav ul li a:hover {
     font-size: 1rem;
 }
 .form-group input{
-    width: 90%;
+    width: 100%;
     padding: 5px 5px;
     
 }
 .form-group input[type='submit']{
-    width: 94%;
+    width: 200px;
     padding: 8px;
+    font-weight: bold;
     margin-top: 10px;
+    color: #1b84ec;
     cursor: pointer;
     border-radius: 5px;
-    background-color: #1f77cf;
+    background-color: #fff;
 }
 
 .form-group span
@@ -115,14 +136,15 @@ nav ul li a:hover {
 
 .form-control-label,
 .register-link{
-    display: block;
+    display: flex;
 }
 .checkbox label,
 .checkbox input[type='checkbox']{
     display: inline-block;
-    width: 50%;
+    width: 45%;
 }
 .text-muted{
- text-decoration: none;
- padding-left: 10px;
+    padding-top: 5px;
+    text-decoration: none;
+    margin: 0 auto;
 }

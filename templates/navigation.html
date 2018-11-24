@@ -1,13 +1,13 @@
 <header>Logo here</header>
 <nav>
     <ul>
-        <li><a class="active" href="/home">Home</a></li>
-        <li><a href="./about">About</a></li>
+        <li><a class="active" href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
         <li><a href="#">Service</a></li>
         <li><a href="#">Portfolio</a></li>
         <li><a href="#">Team</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="/register">Register</a></li>
-        <li><a href="/login">Login</a></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
     </ul>
 </nav>

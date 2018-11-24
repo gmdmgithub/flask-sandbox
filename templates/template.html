@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
     {% if param.title %}
     <title> {{ param.title }}</title>
+    <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.png') }}" type="image/x-icon">
     {% else %}
     <title>First flask page</title>
     {% endif %}
@@ -20,13 +21,13 @@
     {% endif %}
 
     {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">
-                {{ message }}
-            </div>
-            {% endfor %}
-        {% endif %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
     {% endwith %}
 
     {% block content %} {% endblock %}

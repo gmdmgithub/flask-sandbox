@@ -8,3 +8,4 @@ tcl
 #files
 pip-selfcheck.json
 .env
+side.db
