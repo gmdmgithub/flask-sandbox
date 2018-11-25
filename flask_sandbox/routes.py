@@ -1,5 +1,5 @@
 from flask import render_template, url_for, flash, redirect
-from flask_sandbox import app
+from flask_sandbox import app, bcrypt, db
 from flask_sandbox.models import User, Post
 from flask_sandbox.reg_form import RegistrationForm
 from flask_sandbox.login_form import LoginForm
@@ -64,8 +64,12 @@ def about():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('home'))
+        hashed_pass = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, password=hashed_pass,email=form.email.data)
+        db.session.add(user)
+        db.session.commit()
+        flash(f'Your account has been created! Please login to the system', 'success')
+        return redirect(url_for('login'))
     return render_template('register.html', param=register_p, form=form)
 
 #route login form

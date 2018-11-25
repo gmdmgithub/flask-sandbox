@@ -1,5 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+
 from os.path import join, dirname
 import os
 from dotenv import load_dotenv
@@ -18,6 +20,9 @@ app.config['SECRET_KEY'] = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 # lets create db connection
 db = SQLAlchemy(app)
+
+##use bcrypt to hash
+bcrypt = Bcrypt()
 
 #import routs here to do not have circulate init
 from flask_sandbox import routes
