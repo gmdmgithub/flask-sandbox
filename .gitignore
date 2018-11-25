@@ -7,5 +7,5 @@ tcl
 
 #files
 pip-selfcheck.json
-.env
-side.db
+app/.env
+app/side.db
