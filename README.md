@@ -35,3 +35,11 @@ $python
     * for stored password: bcrypt.check_password_hash(stored_pass,tested-password)
         * True or False
 * add bcrypt to the ```__init__.py``` and use as other lib
+# use LoginManager to user session management
+All details can be found: https://flask-login.readthedocs.io/en/latest/
+* most import feature - if you want to protect rout for login user, just add @login_required
+    * if we add login_manager.login_view = 'login' we can simply use query parameter (next in this case)
+    * import request module from flask
+    * use as: request.args.get('next')
+
+

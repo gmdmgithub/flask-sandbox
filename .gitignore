@@ -7,5 +7,5 @@ tcl
 
 #files
 pip-selfcheck.json
-flask_sandbox/.env
-flask_sandbox/side.db
+./flask_sandbox/.env
+./flask_sandbox/side.db
