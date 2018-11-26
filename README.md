@@ -13,9 +13,9 @@ $pip install flask-sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
 # to create db
 $python
-- $from app import db
+- $from flask_sandbox import db
 - $db.create_all()
-- $from app import User, Post
+- $from flask_sandbox import User, Post
 - $usr = User(username='test',password='password',email='test@test.com')
 - $db.session.add(usr) #add couple more 
 - $db.session.commit()
