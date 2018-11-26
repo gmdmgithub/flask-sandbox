@@ -148,3 +148,17 @@ nav ul li a:hover {
     text-decoration: none;
     margin: 0 auto;
 }
+/* account start */
+.content-section .media
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+.rounded-circle{
+    border-radius: 50%;
+    width: 150px;
+    margin: 30px;
+    
+}
