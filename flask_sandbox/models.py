@@ -3,6 +3,7 @@ from flask_sandbox import db, login_manager
 from flask_login import UserMixin #imports neccessary fields for the user
 
 
+
 #function to keep the user session https://flask-login.readthedocs.io/en/latest/
 @login_manager.user_loader
 def load_user(user_id):

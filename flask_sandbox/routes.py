@@ -1,60 +1,17 @@
 from flask import render_template, url_for, flash, redirect, request
+import secrets
+import os
+from PIL import Image
 from flask_sandbox import app, bcrypt, db
 from flask_sandbox.models import User, Post
-from flask_sandbox.reg_form import RegistrationForm
-from flask_sandbox.login_form import LoginForm
+from flask_sandbox.forms.registration import RegistrationForm
+from flask_sandbox.forms.login import LoginForm
+from flask_sandbox.forms.account import UpdateAccountForm
 
 from flask_login import login_user, current_user, logout_user, login_required
 
-#lets add some posted data (simply not from db)
-posts = [
-    {
-        'author': 'John Doe',
-        'title': 'My best friend',
-        'content': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia incidunt aperiam ut distinctio doloremque. Illo maxime soluta dolore dolorem tempore.',
-        'post_date': '2018-01-15'
-    },
-    {
-        'author': 'Janet Jackson',
-        'title': 'My brother',
-        'content': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia incidunt aperiam ut distinctio doloremque. Illo maxime soluta dolore dolorem tempore.',
-        'post_date': '2018-02-15'
-    },
-    {
-        'author': 'John Kennedy',
-        'title': 'My country',
-        'content': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia incidunt aperiam ut distinctio doloremque. Illo maxime soluta dolore dolorem tempore.',
-        'post_date': '2018-03-15'
-    }
-]
+from flask_sandbox.config import about_p, account_p, home_p, login_p, posts, register_p
 
-home_p ={
-    'active':'home',
-    'menu': True,
-    'title' : 'Home page'
-}
-about_p ={
-    'active':'about',
-    'menu': True,
-    'title' : 'About page'
-}
-
-register_p = {
-    'active':'registration',
-    'menu': False,
-    'title': 'Registration page'
-}
-
-login_p = {
-    'active':'login',
-    'menu': False,
-    'title': 'Login page'
-}
-account_p = {
-    'active':'account',
-    'menu': True,
-    'title': 'Account page'
-}
 
 @app.route("/")
 @app.route("/home")
@@ -103,12 +60,39 @@ def logout():
     logout_user()
     return redirect(url_for('home'))  
 
+def save_image(image):
+    random_hex = secrets.token_hex(8)
+    _f_name, f_ext = os.path.splitext(image.filename) #when you do not use variable  start it _ 
+    image_filename = random_hex+f_ext
+    image_path = os.path.join(app.root_path,'static/profile_img',image_filename)
+    
+    output_size = (250, 250)
+    i = Image.open(image)
+    i.thumbnail(output_size)
+    i.save(image_path)
+    
+    return image_filename
+
 #rout for account user page
-@app.route('/account')
+@app.route('/account',methods=['GET', 'POST'])
 @login_required
 def account():
+    form = UpdateAccountForm()
     image_file = url_for('static',filename='profile_img/'+current_user.image_file)
-    return render_template('account.html', param=account_p, image_file=image_file)
+    if form.validate_on_submit():
+        if form.image.data:
+            f_image = save_image(form.image.data)
+            current_user.image_file = f_image
+        current_user.username=form.username.data
+        current_user.email=form.email.data
+        db.session.commit()
+        flash(f'Your account has been sucessfully update', 'seccessful')  
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.username.data=current_user.username
+        form.email.data=current_user.email
+        
+    return render_template('account.html', param=account_p, image_file=image_file, form=form)
 
 
 

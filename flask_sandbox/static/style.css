@@ -1,6 +1,9 @@
 :root
 {
     --nav-h:50px;
+    --shadow: 2px 5px 5px 2px #303030;
+    --border: 1px solid #303030;
+    --b-radius: 10px;
 }
 *
 {
@@ -84,9 +87,9 @@ nav ul li a:hover {
 .box {
     margin: 20px;
     padding: 20px;
-    box-shadow: 2px 5px 5px 2px #303030;
-    border: 1px solid #303030;
-    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border: var(--border);
+    border-radius: var(--b-radius);
     max-width: 50%;
 }
 
@@ -96,9 +99,9 @@ nav ul li a:hover {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    box-shadow: 2px 4px 4px;
-    border-radius: 5px;
-    border: solid 1px gray;
+   box-shadow: var(--shadow);
+   border: var(--border);
+   border-radius: var(--b-radius);
     background-color: #f0ffff;
 }
 .form-group{
@@ -148,6 +151,12 @@ nav ul li a:hover {
     text-decoration: none;
     margin: 0 auto;
 }
+.content-section{
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: var(--border);
+    border-radius: var(--b-radius);
+}
 /* account start */
 .content-section .media
 {
@@ -161,4 +170,13 @@ nav ul li a:hover {
     width: 150px;
     margin: 30px;
     
+}
+.form-image
+{
+    display: none;
+
+}
+.form-image-label
+{
+    cursor: pointer;
 }

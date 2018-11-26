@@ -6,11 +6,11 @@ pip install Flask
 pip install python-dotenv
 # for secret you can use
 $python
--- $import secrets
--- $secrets.token_hex(16)
+- $import secrets
+- $secrets.token_hex(16)
 # for database install
-$pip install flask-sqlalchemy
-from flask_sqlalchemy import SQLAlchemy
+- $pip install flask-sqlalchemy
+- from flask_sqlalchemy import SQLAlchemy
 # to create db
 $python
 - $from flask_sandbox import db
@@ -41,5 +41,13 @@ All details can be found: https://flask-login.readthedocs.io/en/latest/
     * if we add login_manager.login_view = 'login' we can simply use query parameter (next in this case)
     * import request module from flask
     * use as: request.args.get('next')
-
-
+# Adding file from page
+* First import file type filed from wft: ``from flask_wtf.file import FileField, FileAllowed``
+* Add multipart to your form: ``enctype="multipart/form-data"``
+* Add proper validation to the field ie: ``validators=[FileAllowed(['jpg','jpeg','png'])]``
+* To get file extension: _f_name, f_ext = ``os.path.splitext(image.filename)``
+* To resize image import Image from: ``from PIL import Image`` - first install: ``pip install Pillow`` and finally code like below:
+    * output_size = (250, 250)
+    * smal_image = Image.open(image)
+    * smal_image.thumbnail(output_size)
+    * smal_image.save(image_path) 
