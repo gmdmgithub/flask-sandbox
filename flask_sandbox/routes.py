@@ -7,10 +7,11 @@ from flask_sandbox.models import User, Post
 from flask_sandbox.forms.registration import RegistrationForm
 from flask_sandbox.forms.login import LoginForm
 from flask_sandbox.forms.account import UpdateAccountForm
+from flask_sandbox.forms.new_post import NewPostForm
 
 from flask_login import login_user, current_user, logout_user, login_required
 
-from flask_sandbox.config import about_p, account_p, home_p, login_p, posts, register_p
+from flask_sandbox.config import about_p, account_p, home_p, login_p, posts, register_p, new_post_p
 
 
 @app.route("/")
@@ -94,8 +95,16 @@ def account():
         
     return render_template('account.html', param=account_p, image_file=image_file, form=form)
 
+#rout for post
+@app.route('/post/new',methods=['GET','POST'])
+@login_required
+def new_post():
+    form = NewPostForm()
+    return render_template('new_post.html',param=new_post_p, form=form)
 
 
+
+################# END - GRAP ALL REQUESTS ################### 
 #not foud - bed address - at the and of routs
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

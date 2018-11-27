@@ -8,6 +8,12 @@ pip install python-dotenv
 $python
 - $import secrets
 - $secrets.token_hex(16)
+# to catch all requests
+At the end of the routs python file add:
+``@app.route('/', defaults={'path': ''})``
+``@app.route('/<path:path>')``
+``def catch_all(path):``
+    ``return render_template('not-found.html')``
 # for database install
 - $pip install flask-sqlalchemy
 - from flask_sqlalchemy import SQLAlchemy
@@ -47,7 +53,7 @@ All details can be found: https://flask-login.readthedocs.io/en/latest/
 * Add proper validation to the field ie: ``validators=[FileAllowed(['jpg','jpeg','png'])]``
 * To get file extension: _f_name, f_ext = ``os.path.splitext(image.filename)``
 * To resize image import Image from: ``from PIL import Image`` - first install: ``pip install Pillow`` and finally code like below:
-    * output_size = (250, 250)
+    * output_size = (250, 250) #pixels
     * smal_image = Image.open(image)
     * smal_image.thumbnail(output_size)
     * smal_image.save(image_path) 

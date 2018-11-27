@@ -48,3 +48,8 @@ account_p = {
     'menu': True,
     'title': 'Account page'
 }
+new_post_p = {
+    'active':'post',
+    'menu': True,
+    'title': 'Create/edit a post'
+}
