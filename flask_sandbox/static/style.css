@@ -245,3 +245,9 @@ nav ul li a:hover {
     background-color: rgb(175, 13, 13);
     cursor: pointer;
 }
+.btn-page{
+    display: inline;
+    padding: 2px;
+    border: 1px solid gray;
+    border-radius: 2px;
+}

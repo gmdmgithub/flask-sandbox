@@ -17,11 +17,13 @@ from flask_sandbox.config import about_p, account_p, home_p, login_p, posts, reg
 @app.route("/")
 @app.route("/home")
 def home():
-    posts = Post.query.all()
-    for post in posts:
-        if not 'static' in post.author.image_file:
-            post.author.image_file = "static/profile_img/"+post.author.image_file
-    return render_template('home.html',param=home_p, postList=posts) #"<h1>Hi there - here is flask - no restart</h1>"
+    page = request.args.get('page',1,type=int)
+    posts = Post.query.paginate(per_page=2, page=page)
+    # when paginate problem with sql update
+    # for post in posts.items: 
+    #     if not 'static' in post.author.image_file:
+    #         post.author.image_file = "static/profile_img/"+post.author.image_file
+    return render_template('home.html',param=home_p, postList=posts,page=page) #"<h1>Hi there - here is flask - no restart</h1>"
 
 #anbout page
 @app.route("/about")
