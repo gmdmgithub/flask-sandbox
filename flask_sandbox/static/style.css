@@ -8,6 +8,7 @@
 *
 {
     box-sizing: border-box;
+    text-decoration: none;
 }
 body {
     background: #92bde7;
@@ -16,6 +17,8 @@ body {
     padding: 0;
     
 }
+
+
 .alert
 {
     text-align: center;
@@ -204,10 +207,10 @@ nav ul li a:hover {
     width: 50px;
 }
 .post-content{
-    width: 100%;
+    width: 100%;    
 }
 .post-content .top {
-    padding-bottom: 2px;
+    padding-bottom: 10px;
     margin-bottom: 5px;
     width: 100%;
     border-bottom: 1px solid gray;
@@ -215,8 +218,30 @@ nav ul li a:hover {
 .post-content h5{
     font-size: 1rem;
     color: rgb(3, 3, 107);
+  
 }
 .post-content h5 span {
     padding-left: 20px;
     font-size: 0.7rem;
+}
+.post-content .btn {
+    text-decoration: none;
+    padding: 5px 15px;
+    min-width: 100px;
+    margin: 0 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: #f0ffff;
+}
+.post-content form
+{
+        display: inline;
+}
+.post-content .update{
+    background-color: rgb(26, 219, 26);
+    
+}
+.post-content .delete {
+    background-color: rgb(175, 13, 13);
+    cursor: pointer;
 }

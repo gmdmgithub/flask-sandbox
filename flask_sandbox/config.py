@@ -53,3 +53,8 @@ new_post_p = {
     'menu': True,
     'title': 'Create/edit a post'
 }
+post_p = {
+    'active': 'edit_post',
+    'menu': True,
+    'title':'Edit a post'
+}

@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, abort
 import secrets
 import os
 from PIL import Image
@@ -7,11 +7,11 @@ from flask_sandbox.models import User, Post
 from flask_sandbox.forms.registration import RegistrationForm
 from flask_sandbox.forms.login import LoginForm
 from flask_sandbox.forms.account import UpdateAccountForm
-from flask_sandbox.forms.new_post import NewPostForm
+from flask_sandbox.forms.edit_post import EditPostForm
 
 from flask_login import login_user, current_user, logout_user, login_required
 
-from flask_sandbox.config import about_p, account_p, home_p, login_p, posts, register_p, new_post_p
+from flask_sandbox.config import about_p, account_p, home_p, login_p, posts, register_p, new_post_p, post_p
 
 
 @app.route("/")
@@ -19,10 +19,8 @@ from flask_sandbox.config import about_p, account_p, home_p, login_p, posts, reg
 def home():
     posts = Post.query.all()
     for post in posts:
-        print(post.author.image_file)
         if not 'static' in post.author.image_file:
             post.author.image_file = "static/profile_img/"+post.author.image_file
-        print(post.author.image_file)
     return render_template('home.html',param=home_p, postList=posts) #"<h1>Hi there - here is flask - no restart</h1>"
 
 #anbout page
@@ -105,15 +103,55 @@ def account():
 @app.route('/post/new',methods=['GET','POST'])
 @login_required
 def new_post():
-    form = NewPostForm()
+    form = EditPostForm()
     if form.validate_on_submit():
         #post = Post(title=form.title.data,content=form.content.data,user_id=current_user.id)
-        post = Post(title=form.title.data,content=form.content.data,Author=current_user)
+        post = Post(title=form.title.data,content=form.content.data,author=current_user)
         db.session.add(post)
         db.session.commit()
         flash(f'Your post has been created!!', 'success')
         return redirect(url_for('home'))
-    return render_template('new_post.html',param=new_post_p, form=form)
+    return render_template('edit_post.html',param=new_post_p, form=form, mode='new')
+
+
+#rout for post
+@app.route('/post/<int:post_id>')
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if not 'static' in post.author.image_file:
+        post.author.image_file = "/static/profile_img/"+post.author.image_file
+    return render_template('post.html',param=post_p, post=post)
+
+#rout for post
+@app.route('/post/<int:post_id>/update',methods=['GET','POST'])
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    form = EditPostForm()  
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.content = form.content.data 
+        db.session.commit()
+        flash(f'Your post has been updated', 'success')
+        return redirect(url_for('post',post_id=post.id))
+    elif request.method == 'GET':
+        form.title.data = post.title
+        form.content.data = post.content
+    return render_template('edit_post.html',param=new_post_p, form=form, mode='edit')
+
+
+@app.route('/post/<int:post_id>/delete',methods=['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    db.session.delete(post)
+    db.session.commit()
+    flash(f'Your post has been deleted', 'success')
+    return redirect(url_for('home'))
 
 
 

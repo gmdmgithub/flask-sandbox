@@ -7,7 +7,7 @@ from flask_sandbox.models import Post
 
 
 
-class NewPostForm(FlaskForm):
+class EditPostForm(FlaskForm):
     title = StringField('Title:',
         validators=[DataRequired(),Length(min=5, max=100)]
     )
