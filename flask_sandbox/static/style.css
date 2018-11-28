@@ -90,8 +90,13 @@ nav ul li a:hover {
     box-shadow: var(--shadow);
     border: var(--border);
     border-radius: var(--b-radius);
-    max-width: 50%;
+    width: 50%;
 }
+.box h4, .box h5{
+    margin: 0;
+    padding: 0;
+}
+
 
 .form{
     margin: 0 auto;
@@ -110,13 +115,17 @@ nav ul li a:hover {
     width: 100%;
 }
 .form-group input,
-.form-group label {
+.form-group label,
+.form-group textarea {
     font-size: 1rem;
 }
-.form-group input{
+.form-group input,
+.form-group textarea {
     width: 100%;
     padding: 5px 5px;
-    
+}
+.form-group textarea{
+    height: 100px;
 }
 .form-group input[type='submit']{
     width: 200px;
@@ -179,4 +188,35 @@ nav ul li a:hover {
 .form-image-label
 {
     cursor: pointer;
+}
+.user-post{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    
+    
+}
+.post-img{
+    padding-right: 20px;
+}
+.post-img img {
+    border-radius: 50%;
+    width: 50px;
+}
+.post-content{
+    width: 100%;
+}
+.post-content .top {
+    padding-bottom: 2px;
+    margin-bottom: 5px;
+    width: 100%;
+    border-bottom: 1px solid gray;
+}
+.post-content h5{
+    font-size: 1rem;
+    color: rgb(3, 3, 107);
+}
+.post-content h5 span {
+    padding-left: 20px;
+    font-size: 0.7rem;
 }

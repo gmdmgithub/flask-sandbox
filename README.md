@@ -10,10 +10,10 @@ $python
 - $secrets.token_hex(16)
 # to catch all requests
 At the end of the routs python file add:
-``@app.route('/', defaults={'path': ''})``
-``@app.route('/<path:path>')``
-``def catch_all(path):``
-    ``return render_template('not-found.html')``
+- ``@app.route('/', defaults={'path': ''})``
+- ``@app.route('/<path:path>')``
+- ``def catch_all(path):``
+   -  ``return render_template('not-found.html')``
 # for database install
 - $pip install flask-sqlalchemy
 - from flask_sqlalchemy import SQLAlchemy
@@ -21,7 +21,7 @@ At the end of the routs python file add:
 $python
 - $from flask_sandbox import db
 - $db.create_all()
-- $from flask_sandbox import User, Post
+- $from flask_sandbox.models import User, Post
 - $usr = User(username='test',password='password',email='test@test.com')
 - $db.session.add(usr) #add couple more 
 - $db.session.commit()

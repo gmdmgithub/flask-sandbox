@@ -3,13 +3,20 @@
 {% block content%}
 
 <div class="content">
-<h1>Welcome to the flask</h1>
+    <h1>List of posts</h1>
     {% for post in postList %}
     <div class="box">
-        <h4>{{ post.title }}</h4>
-        <h5>{{ post.author }}</h5>
-        <p>{{ post.content }}</p>
-        <p>{{ post.post_date }}</p>
+        <div class="user-post">
+            <div class="post-img">
+                <img src="{{ post.author.image_file }}" alt="{{ post.author.username }}">
+            </div>
+            <div class="post-content">
+                <h5 class="top">{{ post.author.username }} <span>{{ post.date.strftime('%Y-%m-%d') }}</span> </h5>
+                <h4>{{ post.title }}</h4>
+                <p>{{ post.content }}</p>
+
+            </div>
+        </div>
     </div>
     {% endfor %}
 </div>
