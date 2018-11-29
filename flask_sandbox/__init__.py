@@ -41,9 +41,15 @@ bcrypt = Bcrypt()
 #login manager
 login_manager = LoginManager(app)
 #login rout (function) when login_required not meet
-login_manager.login_view = 'login'
+login_manager.login_view = 'users.login'
 
 #import routs here to do not have circulate init
-from flask_sandbox import routes
+#from flask_sandbox import routes - it was before bluprint introduction
+from flask_sandbox.users.routs import users
+from flask_sandbox.posts.routs import posts
+from flask_sandbox.main.routs import main
 
+app.register_blueprint(users)
+app.register_blueprint(posts)
+app.register_blueprint(main)
 

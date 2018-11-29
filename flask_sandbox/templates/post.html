@@ -14,9 +14,9 @@
                 <h5 class="top">{{ post.author.username }} <span>{{ post.date.strftime('%Y-%m-%d') }}</span>
 
                     {% if post.author == current_user %}
-                        <a class="btn update" href="{{ url_for('update_post',post_id=post.id) }}">Update</a>
+                        <a class="btn update" href="{{ url_for('posts.update_post',post_id=post.id) }}">Update</a>
                         <!-- add later modal confirm -->
-                        <form action="{{ url_for('delete_post',post_id=post.id) }}" method="post">
+                        <form action="{{ url_for('posts.delete_post',post_id=post.id) }}" method="post">
                             <button type="submit" class="btn delete" onclick="return confirm('Are you sure?')">Delete</button>
                         </form>
         

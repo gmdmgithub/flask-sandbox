@@ -1,11 +1,7 @@
 from flask_wtf import FlaskForm
-
 from wtforms import StringField, TextAreaField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Length
-
 from flask_sandbox.models import Post
-
-
 
 class EditPostForm(FlaskForm):
     title = StringField('Title:',
