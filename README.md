@@ -16,7 +16,7 @@ At the end of the routs python file add:
    -  ``return render_template('not-found.html')``
 # for database install
 - $pip install flask-sqlalchemy
-- from flask_sqlalchemy import SQLAlchemy
+- from flask_sqlalchemy import SQLAlchemy : http://flask-sqlalchemy.pocoo.org/
 # to create db
 $python
 - $from flask_sandbox import db
@@ -57,3 +57,11 @@ All details can be found: https://flask-login.readthedocs.io/en/latest/
     * smal_image = Image.open(image)
     * smal_image.thumbnail(output_size)
     * smal_image.save(image_path) 
+# Token validation
+* Based on: https://blog.miguelgrinberg.com/post/restful-authentication-with-flask/page/4
+* already included in flask (pip install itsdangerous)
+* documentation: https://itsdangerous.palletsprojects.com/
+* also JWT token in this lib
+# Sending email
+* For flask: https://pythonhosted.org/Flask-Mail/
+* Update file ``__init__.py``

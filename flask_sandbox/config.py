@@ -1,5 +1,6 @@
-
-#lets add some posted data (simply not from db)
+# TODO - chcange to db
+# DONE
+#lets add some posted data (simply not from db) - 
 posts = [
     {
         'author': 'John Doe',
@@ -21,6 +22,7 @@ posts = [
     }
 ]
 
+#page parameters
 home_p ={
     'active':'home',
     'menu': True,
@@ -58,3 +60,16 @@ post_p = {
     'menu': True,
     'title':'Edit a post'
 }
+rest_request_p = {
+    'active': 'rest_request',
+    'menu': True,
+    'title':'Request to reset the password'
+}
+rest_password_p = {
+    'active': 'rest_request',
+    'menu': True,
+    'title':'Rreset the password'
+}
+
+# list pagination per page
+pagin_per_page = 3

@@ -1,0 +1,36 @@
+{% extends "template.html" %}
+
+{% block content %}
+
+<div class="content">
+    <h1>Reset Password request</h1>
+    <div class="content-section">
+
+        <div class="form">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <!-- registration email -->
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                    {{ form.email(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <!-- submit button -->
+                <div class="form-group">
+                    {{ form.submit(class="btn") }}
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}
