@@ -1,5 +1,7 @@
 
-from flask_sandbox import app
+from flask_sandbox import create_app
+
+app = create_app()
 
 if __name__ == "__main__":
     app.run(debug=True)

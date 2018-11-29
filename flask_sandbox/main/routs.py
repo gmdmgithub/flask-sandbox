@@ -28,7 +28,7 @@ def about():
 
 ################# END - GRAP ALL REQUESTS ################### 
 #not foud - bed address - at the and of routs
-@main.route('/', defaults={'path': ''})
-@main.route('/<path:path>')
-def catch_all(path):
-    return render_template('not-found.html')
+# @main.route('/', defaults={'path': ''})
+# @main.route('/<path:path>')
+# def catch_all(path):
+#     return render_template('not-found.html')

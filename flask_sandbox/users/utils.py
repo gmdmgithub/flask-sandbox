@@ -1,15 +1,15 @@
 import sys, secrets, os
 from PIL import Image
 from flask_mail import Message
-from flask_sandbox import mail, app
-from flask import url_for
+from flask_sandbox import mail
+from flask import url_for, current_app
 
 
 def save_image(image):
     random_hex = secrets.token_hex(8)
     _f_name, f_ext = os.path.splitext(image.filename) #when you do not use variable  start it _ 
     image_filename = random_hex+f_ext
-    image_path = os.path.join(app.root_path,'static/profile_img',image_filename)
+    image_path = os.path.join(current_app.root_path,'static/profile_img',image_filename)
     
     output_size = (250, 250)
     i = Image.open(image)
