@@ -183,15 +183,30 @@ nav ul li a:hover {
     margin: 30px;
     
 }
+/* file upload */
 .form-image
 {
     display: none;
 
 }
-.form-image-label
-{
+.form-image-label {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1.25em;
+    border-radius: var(--b-radius);
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
     cursor: pointer;
 }
+.form-image-label:focus,
+.form-image-label:hover {
+    background-color: red;
+}
+
+
+
 .user-post{
     display: flex;
     flex-direction: row;

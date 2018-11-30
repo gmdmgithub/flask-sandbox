@@ -5,63 +5,64 @@
 <div class="content">
     <h2>Log in to the system</h2>
     <div class="form">
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        <!-- user name -->
-        <div class="form-group">
-            {{ form.username.label(class="form-control-label") }}
-            {% if form.username.errors %}
-            {{ form.username(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.username.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <!-- user name -->
+            <div class="form-group">
+                {{ form.username.label(class="form-control-label") }}
+                {% if form.username.errors %}
+                {{ form.username(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.username(class="form-control form-control-lg") }}
+                {% endif %}
             </div>
-            {% else %}
-            {{ form.username(class="form-control form-control-lg") }}
-            {% endif %}
-        </div>
-        <!-- password -->
-        <div class="form-group">
-            {{ form.password.label(class="form-control-label") }}
-            {% if form.password.errors %}
-            {{ form.password(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.password.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
+            <!-- password -->
+            <div class="form-group">
+                {{ form.password.label(class="form-control-label") }}
+                {% if form.password.errors %}
+                {{ form.password(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.password(class="form-control form-control-lg") }}
+                {% endif %}
             </div>
-            {% else %}
-            {{ form.password(class="form-control form-control-lg") }}
-            {% endif %}
-        </div>
-        <!-- remember me checkbox -->
-        <div class="form-group checkbox">
-            {{ form.rememberMe.label(class="form-control-label") }}
-            {% if form.rememberMe.errors %}
-            {{ form.rememberMe(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.rememberMe.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
+            <!-- remember me checkbox -->
+            <div class="form-group checkbox">
+                {{ form.rememberMe.label(class="form-control-label") }}
+                {% if form.rememberMe.errors %}
+                {{ form.rememberMe(class="form-control form-control-lg is-invalid", style="position: relative;top:4px;") }}
+                <div class="invalid-feedback">
+                    {% for error in form.rememberMe.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.rememberMe(class="form-control form-control-lg", style="position: relative;top:4px;") }}
+                {% endif %}
             </div>
-            {% else %}
-            {{ form.rememberMe(class="form-control form-control-lg") }}
-            {% endif %}
-        </div>
 
 
-        <!-- submit button -->
-        <div class="form-group">
-            {{ form.submit(class="btn") }}
-        </div>
-    </form>
+            <!-- submit button -->
+            <div class="form-group">
+                {{ form.submit(class="btn") }}
+            </div>
+        </form>
 
-    <div class="register-link">
-        <small class="text-muted">
-                Do you forget password <a class="ml-2" href="{{ url_for('users.rest_request') }}">Reset password request</a>
-        </small>
-    </div>
+        <div class="register-link">
+            <small class="text-muted">
+                Do you forget password <a class="ml-2" href="{{ url_for('users.rest_request') }}">Reset password
+                    request</a>
+            </small>
+        </div>
     </div>
 </div>
 
