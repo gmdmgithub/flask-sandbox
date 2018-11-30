@@ -36,13 +36,13 @@ about_p ={
 
 register_p = {
     'active':'registration',
-    'menu': False,
+    'menu': True,
     'title': 'Registration page'
 }
 
 login_p = {
     'active':'login',
-    'menu': False,
+    'menu': True,
     'title': 'Login page'
 }
 account_p = {

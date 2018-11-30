@@ -6,10 +6,6 @@ from flask_sandbox.config_app import Config
 
 from flask_mail import Mail
 
-# get configuration
-#moved to Config class
-
-
 # lets create db connection
 db = SQLAlchemy()
 
@@ -26,8 +22,6 @@ login_manager.login_view = 'users.login'
 
 #import routs here to do not have circulate init
 #from flask_sandbox import routes - it was before bluprint introduction
-
-
 
 
 def create_app(config_class=Config):

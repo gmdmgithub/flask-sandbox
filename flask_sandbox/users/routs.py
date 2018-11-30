@@ -60,7 +60,7 @@ def login():
 @users.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('main.home'))
 
 #rout for account user page
 @users.route('/account',methods=['GET', 'POST'])

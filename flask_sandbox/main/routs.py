@@ -22,7 +22,7 @@ def home():
 #anbout page
 @main.route("/about")
 def about():
-    return render_template('about.html', param=home_p, title="About page")
+    return render_template('about.html', param=about_p, title="About page")
 
 
 
