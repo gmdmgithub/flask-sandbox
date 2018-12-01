@@ -64,4 +64,4 @@ All details can be found: https://flask-login.readthedocs.io/en/latest/
 * also JWT token in this lib
 # Sending email
 * For flask: https://pythonhosted.org/Flask-Mail/
-* Update file ``__init__.py``
+* Update file ``__init__.py`` in main directory

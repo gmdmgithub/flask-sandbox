@@ -1,6 +1,8 @@
+{% extends "template.html" %}
 {% block content %}
-
-<h1 style="text-align: center">Forbidden 403</h1>
-<button style="margin: 50px 50px" onclick="window.location='/'">Go to home page</button>
-
+<div class="content">
+    <h1 style="text-align: center">Forbidden 403</h1>
+<!-- {{ error.description }} -->
+    <button style="margin: 50px 50px" onclick="window.location='/'">Go to home page</button>
+</div>
 {% endblock content %}

@@ -3,9 +3,10 @@ from PIL import Image
 from flask_mail import Message
 from flask_sandbox import mail
 from flask import url_for, current_app
+from flask_sandbox.models import User
 
 
-def save_image(image):
+def save_image(image:Image):
     random_hex = secrets.token_hex(8)
     _f_name, f_ext = os.path.splitext(image.filename) #when you do not use variable  start it _ 
     image_filename = random_hex+f_ext
@@ -18,7 +19,7 @@ def save_image(image):
     
     return image_filename
 
-def send_email(user):
+def send_email(user:User):
     #print('email has been sent')
     token = user.generate_auth_token()
     message = Message('Reset Password',

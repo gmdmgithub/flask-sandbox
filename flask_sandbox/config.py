@@ -70,5 +70,10 @@ rest_password_p = {
     'menu': True,
     'title':'Rreset the password'
 }
+error_p={
+    'active': 'error_page',
+    'menu': True,
+    'title': 'Error page'
+}
 # list pagination per page
 pagin_per_page = 3

@@ -25,16 +25,20 @@ login_manager.login_view = 'users.login'
 
 
 def create_app(config_class=Config):
+    
     #set configuration to the app
     app = Flask(__name__)
+    
     #simpler way - create Config class
     app.config.from_object(Config)
     
+    #init all utils db, mail, crypt, user ...
     db.init_app(app)
     mail.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
-
+    
+    #add all routs
     from flask_sandbox.users.routs import users
     from flask_sandbox.posts.routs import posts
     from flask_sandbox.main.routs import main
