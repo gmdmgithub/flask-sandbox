@@ -1,6 +1,8 @@
 #folders
 flask_sandbox/__pycache__
 __pycache__
+**/__pycache__
+flask_sandbox/**/__pycache__
 include
 Lib
 Scripts

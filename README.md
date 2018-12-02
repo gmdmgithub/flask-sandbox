@@ -84,3 +84,10 @@ All details can be found: https://flask-login.readthedocs.io/en/latest/
                 ``fields = ('username', 'email') ``
     * return in some routs like:
         * ``return user_schema.jsonify(user)``
+* simpler way is just using jsonify from flask package : ``return jsonify({'test':'Hello world'})``
+* the best approach is Flask-RESTfull - here: https://flask-restful.readthedocs.io/en/latest/quickstart.html#a-minimal-api
+    * $pip install flask-restful
+    * from flask_restful import Resource, Api
+    * api = Api(app) - instead routes (resources are classess):
+        * api.add_resource(UserList, '/userss')
+        * api.add_resource(User, '/users/<usr_id>')

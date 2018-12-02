@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, abort, Blueprint
+from flask import render_template, url_for, flash, redirect, request, abort, Blueprint, jsonify
 import secrets
 from PIL import Image
 
@@ -116,8 +116,15 @@ def reset_password(token):
     return render_template('reset_password.html',param=rest_password_p, form=form)
 
 # endpoint to get user detail by id
-@users.route("/user/<id>", methods=["GET"])
+@users.route("/user/<id>", methods=["GET", "POST"])
 @login_required
 def user_detail(id):
     user = User.query.get(id)
+    if request.method == 'POST':
+        some_json = request.get_jeson()
+        if some_json:
+            return jsonify({'you send', some_json}), 201
+        else :
+            return jsonify({'message':'something went wrong', 'code': '-1'})
+
     return user_schema.jsonify(user)
