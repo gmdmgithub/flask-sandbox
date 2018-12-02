@@ -65,3 +65,22 @@ All details can be found: https://flask-login.readthedocs.io/en/latest/
 # Sending email
 * For flask: https://pythonhosted.org/Flask-Mail/
 * Update file ``__init__.py`` in main directory
+# Create class form configuration
+*  `` def create_app(config_class=Config):``
+    ``app = Flask(__name__)``
+    ``app.config.from_object(Config) ``
+# Return JSON objects
+* flask-marshmallow - is flask extension to integrate flask with marshmallow(an object serialization/deserialization library)
+    * $ pip install flask_marshmallow
+    * $ pip install marshmallow-sqlalchemy
+    * in ``__init__.py``
+        * from flask_marshmallow import Marshmallow
+        * ma = Marshmallow()
+        * ma.init_app(app)
+    * ie for user clreate class:
+        * `` class UserSchema(ma.Schema): ``
+        `` class Meta: ``
+                `` # Fields to expose``
+                ``fields = ('username', 'email') ``
+    * return in some routs like:
+        * ``return user_schema.jsonify(user)``

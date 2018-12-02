@@ -3,7 +3,7 @@ import secrets
 from PIL import Image
 
 from flask_sandbox import bcrypt, db, mail
-from flask_sandbox.models import User, Post
+from flask_sandbox.models import User, Post, user_schema
 from flask_sandbox.config import about_p, account_p, home_p, login_p, posts, register_p, new_post_p, post_p, pagin_per_page, rest_request_p, rest_password_p
 from flask_sandbox.users.utils import save_image, send_email
 from flask_sandbox.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, ResetRequestForm, RestetPassword
@@ -114,3 +114,10 @@ def reset_password(token):
         flash(f'Your password has been succesfuly changed', 'success')
         return redirect(url_for('main.home'))
     return render_template('reset_password.html',param=rest_password_p, form=form)
+
+# endpoint to get user detail by id
+@users.route("/user/<id>", methods=["GET"])
+@login_required
+def user_detail(id):
+    user = User.query.get(id)
+    return user_schema.jsonify(user)

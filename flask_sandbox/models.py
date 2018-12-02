@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask_sandbox import db, login_manager
+from flask_sandbox import db, login_manager, ma
 from flask import current_app
 from flask_login import UserMixin #imports neccessary fields for the user
 
@@ -41,6 +41,16 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+
+class UserSchema(ma.Schema):
+    class Meta:
+        # Fields to expose
+        fields = ('username', 'email')
+
+
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)

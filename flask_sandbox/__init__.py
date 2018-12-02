@@ -6,6 +6,8 @@ from flask_sandbox.config_app import Config
 
 from flask_mail import Mail
 
+from flask_marshmallow import Marshmallow
+
 # lets create db connection
 db = SQLAlchemy()
 
@@ -14,6 +16,9 @@ mail = Mail()
 
 ##use bcrypt to hash
 bcrypt = Bcrypt()
+
+# use marshmallow
+ma = Marshmallow()
 
 #login manager
 login_manager = LoginManager()
@@ -37,6 +42,7 @@ def create_app(config_class=Config):
     mail.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
+    ma.init_app(app)
     
     #add all routs
     from flask_sandbox.users.routs import users
