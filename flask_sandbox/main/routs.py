@@ -1,8 +1,12 @@
-from flask import render_template, url_for, flash, redirect, request, abort, Blueprint
+from flask import render_template, url_for, flash, redirect, request, abort, Blueprint, current_app
 from flask_sandbox.models import Post
 
 from flask_sandbox.config import about_p, account_p, home_p, login_p, posts, register_p, new_post_p, post_p, pagin_per_page, rest_request_p, rest_password_p
 
+import folium
+
+
+from flask_sandbox.config_app import Config
 
 main = Blueprint('main',__name__)
 
@@ -22,6 +26,10 @@ def home():
 #anbout page
 @main.route("/about")
 def about():
+    map = folium.Map(location=[50.062379, 19.936971], zoom_start=18)
+    file_name = Config.main_path+"\\templates\\map.html"
+    print(f'File to save: {file_name}')
+    map.save(file_name)
     return render_template('about.html', param=about_p, title="About page")
 
 

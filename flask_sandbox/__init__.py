@@ -8,6 +8,8 @@ from flask_mail import Mail
 
 from flask_marshmallow import Marshmallow
 
+from os.path import join, dirname
+
 # lets create db connection
 db = SQLAlchemy()
 
@@ -28,6 +30,7 @@ login_manager.login_view = 'users.login'
 #import routs here to do not have circulate init
 #from flask_sandbox import routes - it was before bluprint introduction
 
+main_path = dirname(__file__)
 
 def create_app(config_class=Config):
     
