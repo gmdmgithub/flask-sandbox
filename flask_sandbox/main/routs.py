@@ -26,10 +26,12 @@ def home():
 #anbout page
 @main.route("/about")
 def about():
-    map = folium.Map(location=[50.062379, 19.936971], zoom_start=18)
-    file_name = Config.main_path+"\\templates\\map.html"
-    print(f'File to save: {file_name}')
-    map.save(file_name)
+    if not Config.map_created:
+        map = folium.Map(location=[50.062379, 19.936971], zoom_start=6)
+        file_name = Config.main_path+"\\templates\\map.html"
+        print(f'Map file to save: {file_name}')
+        map.save(file_name)
+        Config.map_created = True
     return render_template('about.html', param=about_p, title="About page")
 
 

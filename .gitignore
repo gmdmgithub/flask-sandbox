@@ -1,8 +1,9 @@
-#folders
-flask_sandbox/__pycache__
-__pycache__
-**/__pycache__
-flask_sandbox/**/__pycache__
+# Byte-compiled / optimized / DLL files
+flask_sandbox/**/__pycache__/
+flask_sandbox/__pycache__/
+__pycache__/
+*.py[cod]
+#other folders
 include
 Lib
 Scripts
@@ -12,3 +13,4 @@ tcl
 pip-selfcheck.json
 flask_sandbox/.env
 flask_sandbox/side.db
+/**/*.py[co]
