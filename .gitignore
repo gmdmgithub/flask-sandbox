@@ -2,7 +2,6 @@
 flask_sandbox/**/__pycache__/
 flask_sandbox/__pycache__/
 __pycache__/
-*.py[cod]
 #other folders
 include
 Lib

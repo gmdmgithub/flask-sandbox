@@ -5,6 +5,8 @@ from flask_sandbox import mail
 from flask import url_for, current_app
 from flask_sandbox.models import User
 
+import folium
+from flask_sandbox.config_app import Config
 
 def save_image(image:Image):
     random_hex = secrets.token_hex(8)
@@ -37,4 +39,17 @@ def send_email(user:User):
         mail.send(message)
     except:
         print("Unexpected error:", sys.exc_info()[0])
+
+def generate_map():
+    if not Config.map_created:
+        try:
+            map = folium.Map(location=[50.062379, 19.936971], zoom_start=6)
+            file_name = Config.main_path+"\\templates\\map.html"
+            print(f'Map file to save: {file_name}')
+            map.save(file_name)    
+            Config.map_created = True
+        except Exception:
+            print(Exception)        
+        
+    
 

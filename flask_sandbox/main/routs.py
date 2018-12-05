@@ -3,11 +3,6 @@ from flask_sandbox.models import Post
 
 from flask_sandbox.config import about_p, account_p, home_p, login_p, posts, register_p, new_post_p, post_p, pagin_per_page, rest_request_p, rest_password_p
 
-import folium
-
-
-from flask_sandbox.config_app import Config
-
 main = Blueprint('main',__name__)
 
 
@@ -26,12 +21,6 @@ def home():
 #anbout page
 @main.route("/about")
 def about():
-    if not Config.map_created:
-        map = folium.Map(location=[50.062379, 19.936971], zoom_start=6)
-        file_name = Config.main_path+"\\templates\\map.html"
-        print(f'Map file to save: {file_name}')
-        map.save(file_name)
-        Config.map_created = True
     return render_template('about.html', param=about_p, title="About page")
 
 
