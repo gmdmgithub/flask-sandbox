@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request, abort, Blu
 import secrets
 from PIL import Image
 
-from flask_sandbox import bcrypt, db, mail
+from flask_sandbox import bcrypt, db, mail, logging
 from flask_sandbox.models import User, Post, user_schema
 from flask_sandbox.config import about_p, account_p, home_p, login_p, posts, register_p, new_post_p, post_p, pagin_per_page, rest_request_p, rest_password_p
 from flask_sandbox.users.utils import save_image, send_email
@@ -53,7 +53,8 @@ def login():
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('main.home'))
         else:
-            flash(f'Login unsuccessful', 'unsuccess')  
+            flash(f'Login unsuccessful', 'unsuccess') 
+            logging.warning(f'user not log in: {form.username.data}')
     return render_template('login.html', param=login_p, form=form)
 
 #route logout form

@@ -8,7 +8,10 @@ from flask_mail import Mail
 
 from flask_marshmallow import Marshmallow
 
-from os.path import join, dirname
+import logging
+
+logging.basicConfig(level=logging.DEBUG,filename='logfile.log',
+                    format='%(asctime)s:%(levelname)s:%(lineno)d:%(message)s:%(process)d:%(processName)s:%(thread)d:%(threadName)s')
 
 # lets create db connection
 db = SQLAlchemy()
@@ -30,7 +33,7 @@ login_manager.login_view = 'users.login'
 #import routs here to do not have circulate init
 #from flask_sandbox import routes - it was before bluprint introduction
 
-main_path = dirname(__file__)
+
 
 def create_app(config_class=Config):
     
@@ -39,6 +42,7 @@ def create_app(config_class=Config):
     
     #simpler way - create Config class
     app.config.from_object(Config)
+    logging.debug('config file has been read')
     
     #init all utils db, mail, crypt, user ...
     db.init_app(app)
