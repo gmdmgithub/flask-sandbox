@@ -24,7 +24,7 @@ def save_image(image:Image):
 def send_email(user:User):
     #print('email has been sent')
     token = user.generate_auth_token()
-    message = Message('Reset Password',
+    message = Message(r'Reset Password',
             sender='noreplay@demo.com',
             recipients=[user.email])
     message.reply_to = "THIS IS THE EMAIL I WANT TO CHANGE@domain.com"
@@ -38,7 +38,7 @@ def send_email(user:User):
     try:
         mail.send(message)
     except:
-        print("Unexpected error:", sys.exc_info()[0])
+        print(r"Unexpected error:", sys.exc_info()[0]) #print r - raw string, thanks fot that you have not modified
 
 def generate_map():
     if not Config.map_created:

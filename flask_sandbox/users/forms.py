@@ -5,6 +5,8 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 from flask_sandbox.models import User
 from flask_login import current_user
 
+from flask_sandbox.utils.regexp import check_username_pattern 
+
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username:',
@@ -23,6 +25,8 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValueError('Username already exists. Please choose a different one')
+        if not check_username_pattern(username):
+            raise ValueError('Username pattern is incorrect - use only letters, digits and underscore')
     def validate_email(self,email):
         user = User.query.filter_by(email=email.data).first()
         if user:
@@ -55,6 +59,8 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(username=username.data).first()
             if user:
                 raise ValueError('Username already exists. Please choose a different one')
+            if not check_username_pattern(username.data):
+                raise ValueError('Username pattern is incorrect - use only letters, digits and underscore')
 
     def validate_email(self,email):
         if email.data !=  current_user.email:
