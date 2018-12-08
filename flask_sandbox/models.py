@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask_sandbox import db, login_manager, ma
+from flask_sandbox import db, login_manager, ma, logging
 from flask import current_app
 from flask_login import UserMixin #imports neccessary fields for the user
 
@@ -33,8 +33,10 @@ class User(db.Model, UserMixin):
         try:
             data = s.loads(token)
         except SignatureExpired:
+            logging.error('Expired token')
             return None # valid token, but expired
         except BadSignature:
+            logging.error('Invalid token')
             return None # invalid token
         user = User.query.get(data['usr_id'])
         return user

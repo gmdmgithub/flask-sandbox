@@ -1,6 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request, abort, Blueprint, current_app
 from flask_sandbox import logging
 from flask_sandbox.models import Post
+from flask_login import current_user
 
 from flask_sandbox.config import about_p, account_p, home_p, login_p, posts, register_p, new_post_p, post_p, pagin_per_page, rest_request_p, rest_password_p
 
@@ -12,7 +13,10 @@ main = Blueprint('main',__name__)
 def home():
     page = request.args.get('page',1,type=int)
     posts = Post.query.order_by(Post.date.desc()).paginate(per_page=pagin_per_page, page=page)
-    logging.info(f'main page has been entred')
+    user_id = -1
+    if current_user :
+        user_id = current_user.id
+    logging.info(f'main page has been entred user id: {user_id}')
     # when paginate problem with sql update
     # for post in posts.items: 
     #     if not 'static' in post.author.image_file:

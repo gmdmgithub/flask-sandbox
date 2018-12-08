@@ -51,13 +51,14 @@ pattern = re.compile(r'[89]0\d[.-]\d\d\d[.-]\d\d\d\d')
 
 pattern = re.compile(r'[a-zA-Z-0-9_.-]+@[a-zA-Z-0-9_.-]+\.(com|net|edu)') #only emails from domain com net or edu
 
-#finditter to get itteration object
-matches = pattern.finditer(text_to_search)
 
-#matches = pattern.finditer(read_sample_file())
+# only search when call directly
+if __name__ == "__main__":
+    #finditter to get itteration object
+    matches = pattern.finditer(text_to_search)
 
-
-search_and_print(matches)
+    #matches = pattern.finditer(read_sample_file())
+    search_and_print(matches)
 
 
 def check_username_pattern(username):
@@ -68,5 +69,6 @@ def check_username_pattern(username):
     username_pattern = re.compile(r'[^[0-9_]\w+') #cannot start from letter only word
     return username_pattern.fullmatch(username) #fullmatch search at start
 
-#print('check:', check_username_pattern('0testme'))
-#print('check 2',check_username_pattern('testme0'))
+if __name__ == "__main__":
+    print('check:', check_username_pattern('0testme'))
+    print('check 2',check_username_pattern('testme0'))

@@ -10,8 +10,31 @@ from flask_marshmallow import Marshmallow
 
 import logging
 
-logging.basicConfig(level=logging.DEBUG,filename='logfile.log',
-                    format='%(asctime)s:%(levelname)s:%(lineno)d:%(message)s:%(process)d:%(processName)s:%(thread)d:%(threadName)s')
+logger = logging.getLogger(__name__) ##- if you what to have seperate logging files and evoid problem with import
+
+logger.setLevel(logging.INFO)
+
+formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(filename)s:'+\
+                    '%(module)s:%(lineno)d:%(message)s:'+\
+                    '%(processName)s:%(process)d:%(threadName)s:%(thread)d')
+
+
+file_hendler = logging.FileHandler('logfile.log')
+file_hendler.setFormatter(formatter)
+file_hendler.setLevel(logging.INFO)
+
+stream_hendler = logging.StreamHandler() ##we can specify as meny hendler as we want
+stream_hendler.setFormatter(formatter)
+stream_hendler.setLevel(logging.INFO)
+
+logger.addHandler(file_hendler)
+logger.addHandler(stream_hendler)
+
+
+# logging.basicConfig(level=logging.DEBUG,filename='logfile.log',
+#                     format='%(asctime)s:%(levelname)s:%(filename)s:'+\
+#                     '%(module)s:%(lineno)d:%(message)s:'+\
+#                     '%(processName)s:%(process)d:%(threadName)s:%(thread)d')
 
 # lets create db connection
 db = SQLAlchemy()
