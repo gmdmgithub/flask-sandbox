@@ -95,6 +95,7 @@ def rest_request():
         # TODO senading email
         send_email(user)
         flash(f'Your request has been processed', 'success')
+        logging.info('Message has beeb')
         return redirect(url_for('main.home'))
     return render_template('reset_request.html',param=rest_request_p, form=form)
 
