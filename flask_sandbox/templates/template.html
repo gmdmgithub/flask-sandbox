@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
     {% if param.title %}
-    <title> {{ param.title }}</title>
+    <title> {% param.title %}</title>
     <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.png') }}" type="image/x-icon">
     {% else %}
     <title>First flask page</title>
